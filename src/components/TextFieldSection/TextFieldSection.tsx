@@ -1,19 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-import TextField from "../TextField/TextField";
+import GenericTextField from "../GenericTextField/GenericTextField";
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    width: 25%;
 `;
 
 function TextFieldSection(){
 
     return <Container>
-        <TextField title="Traço de personalidade" posLeft="23%"/>
-        <TextField title="Ideais" posLeft="43%"/>
-        <TextField title="Vinculos" posLeft="40%"/>
-        <TextField title="Fraquezas" posLeft="40%"/>
+        <GenericTextField mr={"1rem"}>
+            Traço de Personalidade
+        </GenericTextField>
+        <GenericTextField mr={"1rem"}>
+            Ideais
+        </GenericTextField >
+        <GenericTextField mr={"1rem"}>
+            Vinculos
+        </GenericTextField>
+        <GenericTextField mr={"1rem"}>
+            Fraquezas
+        </GenericTextField>
     </Container>
 }
 

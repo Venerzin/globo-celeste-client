@@ -19,7 +19,6 @@ const Container = styled.div`
 
 const SalvaGuardasWrapper = styled.div`
     grid-area: salva;
-    background-color: red;
 `;
 
 const AtaquesWrapper = styled.div`

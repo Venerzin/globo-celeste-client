@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import "./style.css";
+
 const Container = styled.div`
     background-color: #0e071b;
     width: 100%;
@@ -30,11 +32,12 @@ const TextArea = styled.textarea`
 
 interface Props {
     children: string;
+    mr?: string;
 }
 
-function GenericTextField({children}: Props){
+function GenericTextField({children, mr="0%"}: Props){
 
-    return <Container>
+    return <Container style={{ marginBottom: mr}}>
         <Title>{children}</Title>
         <TextArea></TextArea>
     </Container>

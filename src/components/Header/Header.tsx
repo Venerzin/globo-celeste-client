@@ -34,8 +34,8 @@ const InfoWrapper = styled.section`
     grid-template-rows: 1fr 1fr;
     grid-template-columns: repeat(6, 1fr);
 
-    grid-template-areas: "pclass pclass palignment palignment username username"
-                         "race  race    exp        exp        exp      exp";
+    grid-template-areas: "pclass pclass race race username username"
+                         "plevel plevel exp  exp  exp      exp";
 `;
 
 const ClassWrapper = styled.div`
@@ -45,8 +45,8 @@ const ClassWrapper = styled.div`
     align-items: center;
 `;
 
-const AlignmentWrapper = styled.div`
-    grid-area: palignment;
+const Level = styled.div`
+    grid-area: plevel;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +66,7 @@ const RaceWrapper = styled.div`
     align-items: center;
 `;
 
-const ExpWrapper = styled.div`
+const ExpToUpWrapper = styled.div`
     grid-area: exp;
     display: flex;
     justify-content: center;
@@ -97,9 +97,9 @@ function Header(){
                 <Text>Classe</Text>
             </ClassWrapper>
 
-            <AlignmentWrapper>
-                <Text>Alinhamento</Text>
-            </AlignmentWrapper>
+            <Level>
+                <Text>Nivel</Text>
+            </Level>
 
             <UsernameWrapper>
                 <Text>Nome do Jogador</Text>
@@ -109,9 +109,9 @@ function Header(){
                 <Text>Raça</Text>
             </RaceWrapper>
 
-            <ExpWrapper>
-                <Text>Cristais do tempo</Text>
-            </ExpWrapper>
+            <ExpToUpWrapper>
+                <Text>Cristais para UP</Text>
+            </ExpToUpWrapper>
         </InfoWrapper>
     </Container>
 }

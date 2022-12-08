@@ -1,16 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import './index.css';
 import Ficha from './pages/Ficha';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import reportWebVitals from './reportWebVitals';
+
+import {loader as rootLoader} from "./utils/loader";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Login />
+  },
+  {
+    path: "/user/:id",
+    element: <Ficha />,
+    loader: rootLoader,
+  }
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Login />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 

@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css';
 import styled from 'styled-components';
-import PersonalData from '../components/PersonalData/PersonalData';
-import DiscordData from '../components/DiscordData/DiscordData';
-import Ficha from './Ficha';
+import LoginForm from '../components/LoginForm/LoginForm';
 
 const Container = styled.div`
   width: 100vw;
@@ -15,32 +13,9 @@ const Container = styled.div`
 
 function Login() {
 
-    const [stage, setStage] = useState(0);
-
-    function nextStage(){
-        setStage(stage+1);
-    }
-
-    function prevStage(){
-        setStage(stage-1);
-    }
-
-    switch(stage){
-        case 0: 
-            return (
-                <Container> 
-                    <PersonalData next={nextStage}></PersonalData>
-                </Container>
-            );
-        case 1:
-            return (
-                <Container> 
-                    <DiscordData next={nextStage} prev={prevStage}></DiscordData>
-                </Container>
-            );
-        default:
-            return <Ficha />
-    }  
+    return <Container>
+        <LoginForm />
+    </Container>
 }
 
 export default Login;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { To } from 'react-router-dom';
 import './style.css';
 import styled from 'styled-components';
 import Header from '../components/Header/Header';
@@ -10,6 +11,7 @@ const Container = styled.div`
 `;
 
 function Ficha() {
+
   return (
     <Container>
       <Header />
