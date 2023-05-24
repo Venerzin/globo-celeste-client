@@ -5,10 +5,15 @@ import BannerImage from '../../assets/Banner.png';
 
 const Container = styled.div`
 position: relative;
+grid-area: ${(props) => props.defaultValue};
 `;
 
 const Image = styled.img`
     width: 10rem;
+
+    @media (max-width: 375px){
+        width: 8rem;
+    }
 `;
 
 const Title = styled.h3`
@@ -16,6 +21,24 @@ const Title = styled.h3`
     color: white;
     top: 10%;
     left: ${(props) => props.defaultValue};
+
+    @media (max-width: 375px){
+        left: ${(props) => {
+            if(props.className === 'second'){
+                return '17%';
+            }
+
+            return props.defaultValue
+        }};
+
+        font-size: ${(props) => {
+            if(props.className === 'third'){
+                return '.95rem';
+            }
+
+            return
+        }};
+    }
 `;
 
 const Input = styled.input`
@@ -29,19 +52,36 @@ const Input = styled.input`
     position: absolute;
     top: 15%;
     left: 0;
+
+    @media (max-width: 375px){
+        width: 8rem;
+    }
 `;
 
 interface Props {
     title: string;
+    value: number;
     posLeft: string;
+    gridArea: string;
+    className?: string;
+
+    handleChange: (element: HTMLInputElement) => void;
 }
 
-function Banner({title, posLeft}: Props){
+function Banner({title, value, posLeft, gridArea, className, handleChange}: Props){
 
-    return <Container>
+    if(className !== undefined){
+        return <Container defaultValue={gridArea}>
+            <Title defaultValue={posLeft} className={className}>{title}</Title>
+            <Image src={BannerImage}></Image>
+            <Input type="number" defaultValue={0} value={value} onChange={(e) => {handleChange(e.target)}}></Input>
+        </Container>
+    }
+
+    return <Container defaultValue={gridArea}>
         <Title defaultValue={posLeft}>{title}</Title>
         <Image src={BannerImage}></Image>
-        <Input type="number" defaultValue={0}></Input>
+        <Input type="number" defaultValue={0} value={value} onChange={(e) => {handleChange(e.target)}}></Input>
     </Container>
 }
 

@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import AttributesBar from "./AttributesBar";
-import PlayerInfos from "./PlayerInfos/PlayerInfos";
+import AttributesBar from "./AttributesBar/AttributesBar";
 import SkillsBar from "./SkillsBar";
-import TextFieldSection from "./TextFieldSection/TextFieldSection";
+import { IPlayer } from "../interfaces/IPlayer";
 
 const Container = styled.div`
-    margin: 2rem 0 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    
+    grid-area: sidebar;
+    display: grid;
+    width: 100%;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "attributes skills";
 `;
 
 function SideBar(){
@@ -17,10 +19,6 @@ function SideBar(){
     return <Container>
             <AttributesBar />
             <SkillsBar />
-            
-            <PlayerInfos />
-
-            <TextFieldSection />
         </Container>
 }
 

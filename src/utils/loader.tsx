@@ -5,6 +5,8 @@ const loader = () => {
   if (!user) {
     return redirect("/");
   }
+
+  return null;
 };
 
 export { loader };

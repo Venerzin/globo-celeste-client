@@ -1,19 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Skill from "./Skill/Skill";
+import { useParams } from "react-router-dom";
+import { usePlayerStore } from "../store/player";
 
 const Container = styled.div`
-    width: 15%;
+    width: 100%;
     margin: 0 0 0 .25rem;
     height: 49rem;
-`;
-
-const TopTriangle = styled.div`
-    width: 0;
-    height: 0;
-    border-left: 320px solid transparent;
-    border-right: 320px solid transparent;
-    border-bottom: 160px solid lightblue;
+    grid-area: skills;
 `;
 
 const SkillsWrapper = styled.div`
@@ -36,12 +31,41 @@ const pericias = ['Acrobacia', 'Adestrar Animais', 'Arcanismo', 'Atletismo', 'En
 
 function SkillsBar(){
 
+    const { id } = useParams();
+    const { state, actions } = usePlayerStore((store) => store);
+    const [activedSkills, setActivedSkills] = useState<string[]>(state.skills.split("-"));
+
+    function handleChangeActivatedSkill(skill: string, activated: boolean){
+        if(activated){
+            setActivedSkills((prevState) => {
+                if(prevState.includes(skill)){
+                    return prevState
+                }
+    
+                return [...prevState, skill]
+            });
+
+            return
+        }
+
+        setActivedSkills((prevState) => {
+            const state = prevState.filter((item) => item !== skill);
+
+            return state;
+        });
+    }
+
+    useEffect(() => {
+        actions.updateUser({...state, skills: activedSkills.join('-')});
+        // eslint-disable-next-line
+    }, [activedSkills]);
+
     return <Container>
         <SkillsWrapper>
             <Title>Perícias</Title>
 
             {
-                pericias.map((pericia) => <><Skill name={pericia} /> <br /></>)
+                pericias.map((pericia, index) => <><Skill key={index} name={pericia} activedSkills={activedSkills} onChange={handleChangeActivatedSkill} /> <br /></>)
             }
         </SkillsWrapper>
     </Container>

@@ -1,23 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
+
 import Ficha from './pages/Ficha';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Fichas from './pages/Fichas';
+
 import reportWebVitals from './reportWebVitals';
 
-import {loader as rootLoader} from "./utils/loader";
+import {loader, loader as rootLoader} from "./utils/loader";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "/user/:id",
-    element: <Ficha />,
+    element: <Fichas />,
     loader: rootLoader,
+  },
+  {
+    path: "/ficha/:id",
+    element: <Ficha />,
+    loader: rootLoader
   }
 ]);
 

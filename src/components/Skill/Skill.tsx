@@ -1,10 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './style.css';
 import styled from 'styled-components';
-
-interface Props {
-    name: string;
-}
 
 const Label = styled.label`
   text-transform: capitalize;
@@ -12,9 +8,29 @@ const Label = styled.label`
   padding: 0 0 0 .5rem;
 `;
 
-function Skill({name}: Props){
+interface Props {
+    name: string;
+    activedSkills: string[];
+    onChange(value: string, activated: boolean): void;
+}
+
+function Skill({name, activedSkills, onChange}: Props){
+
+    const labelRef = useRef<HTMLLabelElement>(null);
+
+    function handleInputChange(){
+        if(labelRef.current !== null){
+            let input = labelRef.current.firstElementChild as HTMLInputElement;
+            onChange(name, input.checked);
+        }
+
+    }
+
     return <>
-        <Label htmlFor={name.toLocaleLowerCase()}><input type="checkbox" id={name.toLocaleLowerCase()}/> _ {name.toLocaleLowerCase()}</Label>
+        <Label htmlFor={name.toLocaleLowerCase()} ref={labelRef}>
+            {activedSkills.includes(name) ? <input type="checkbox" id={name.toLocaleLowerCase()} defaultChecked={true} onChange={handleInputChange}/> : <input type="checkbox" id={name.toLocaleLowerCase()} onChange={handleInputChange}/>}
+            _ {name.toLocaleLowerCase()}
+        </Label>
     </>
 }
 

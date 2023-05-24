@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import LoginImage from "../../assets/login-image.svg";
 import DragonImage from "../../assets/DragonDetail.png";
+import { IRegister } from "../../interfaces/IRegister";
 
 const Container = styled.div`
     width: 80vw;
@@ -15,7 +16,7 @@ const Container = styled.div`
 
 `;
 
-const PasswordContainer = styled.div`
+const EmailContainer = styled.div`
     margin: 0 0 1rem;
 `;
 
@@ -91,40 +92,41 @@ const Image = styled.img`
     width: 80%;
     margin: auto;
 `;
+
 interface Props{
-    password: string;
-    onPasswordChange: (password: string) => void;
-    next: () => void;
-    prev: () => void;
+    userData: Omit<IRegister, "password">;
+    onNameChange(name: string): void;
+    onEmailChange(email: string): void;
+    onDiscordIdChange(email: string): void;
+    next(): void;
 }
 
-
-function DiscordData({ password, onPasswordChange, prev, next}: Props){
-
-    const [confirmPassword, setConfirmPassword] = useState("");
-
-    const handleConfirmPassword = (password: string) => {
-        setConfirmPassword(password);
-    }
+function RegisterForm({ userData, onNameChange, onEmailChange, onDiscordIdChange, next }: Props){
 
     return <Container>
         <FormContainer>
             <Logo src={DragonImage}/>
 
             <Form>
-            <Title>Escolha uma senha</Title>
+            <Title>Increva-se</Title>
 
-            <PasswordContainer>
-                <Label htmlFor="password">Senha: </Label>
-                <Input id="password" type="password" value={password} onChange={(e) => onPasswordChange(e.target.value)}/>
-            </PasswordContainer>
+            <EmailContainer>
+                <Label htmlFor="name">Nome: </Label>
+                <Input id="name" type="text" value={userData.name} onChange={(e) => onNameChange(e.target.value)} required={true}/>
+            </EmailContainer>
 
-            <PasswordContainer>
-                <Label htmlFor="passwordConfirm">Confirme a senha: </Label>
-                <Input id="passwordConfirm" type="password" value={confirmPassword} onChange={(e) => handleConfirmPassword(e.target.value)}/>
-            </PasswordContainer>
+            <EmailContainer>
+                <Label htmlFor="email">Email: </Label>
+                <Input id="email" type="email" value={userData.email} onChange={(e) => onEmailChange(e.target.value)} required={true}/>
+            </EmailContainer>
 
-            <Button type="button" onClick={next}>Registre-se</Button>
+            <EmailContainer>
+                <Label htmlFor="discord">Discord ID: </Label>
+                <Input id="discord" type="text" value={userData.discordId} onChange={(e) => onDiscordIdChange(e.target.value)} required={true}/>
+            </EmailContainer>
+
+
+            <Button type="button" onClick={next}>Proximo</Button>
             </Form>
         </FormContainer>
 
@@ -134,4 +136,4 @@ function DiscordData({ password, onPasswordChange, prev, next}: Props){
     </Container>
 }
 
-export default DiscordData;
+export default RegisterForm;

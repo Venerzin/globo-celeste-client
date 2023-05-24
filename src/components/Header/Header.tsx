@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components"
 
 import DragonImage from "../../assets/DragonDetail.png";
+import { IPlayer } from "../../interfaces/IPlayer";
+import { IClass } from "../../interfaces/IClasses";
+
+import { usePlayerStore } from "../../store/player";
 
 const Container = styled.div`
     height: 8rem;
@@ -11,6 +15,13 @@ const Container = styled.div`
     border-radius: 10px;
     margin-top: 2rem;
     position: relative;
+
+    @media (max-width: 375px){
+        height: 10rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
 const Image = styled.img`
@@ -18,6 +29,11 @@ const Image = styled.img`
     top: -50%;
     left: -5%;
     z-index: -1;
+
+    @media (max-width:375px){
+
+        top: -40%;
+    }
 `;
 
 const NicknameWrapper = styled.section`
@@ -26,6 +42,10 @@ const NicknameWrapper = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 375px){
+        height: 30%;
+    }
 `;
 
 const InfoWrapper = styled.section`
@@ -34,8 +54,21 @@ const InfoWrapper = styled.section`
     grid-template-rows: 1fr 1fr;
     grid-template-columns: repeat(6, 1fr);
 
-    grid-template-areas: "pclass pclass race race username username"
-                         "plevel plevel exp  exp  exp      exp";
+    grid-template-areas: "pclass pclass race race fragments fragments"
+                         "plevel plevel exp  exp  totalexp  totalexp";
+
+    @media (max-width: 375px){
+        width: 90%;
+
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+
+        grid-template-areas: "pclass    pclass    race      race"
+                             "fragments fragments plevel    plevel "
+                             "exp       exp       totalexp  totalexp";
+
+        grid-row-gap: 10px;
+    }
 `;
 
 const ClassWrapper = styled.div`
@@ -52,14 +85,14 @@ const Level = styled.div`
     align-items: center;
 `;
 
-const UsernameWrapper = styled.div`
-    grid-area: username;
+const TotalExpWrapper = styled.div`
+    grid-area: totalexp;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
-const RaceWrapper = styled.div`
+const SpecieWrapper = styled.div`
     grid-area: race;
     display: flex;
     justify-content: center;
@@ -77,41 +110,67 @@ const Nickname = styled.h1`
     color: white;
 `;
 
+const FragmentsWrapper = styled.div`
+    grid-area: fragments;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 const Text = styled.p`
     color: white;
 `;
 
+interface Props{
+    classes: IClass[];
+}
 
-function Header(){
+function Header(props: Props){
+
+    const {state, actions} = usePlayerStore((store) => store);
+    const [currentClass, setCurrentClass] = useState(state.rpgClassId);
+
+    const listOptions = props.classes.map((value) => <option value={value.id} key={value.id}>{value.name}</option>);
+
+    const handleClassChange = (id: string) =>{
+        actions.updateUser({...state, rpgClassId: id});
+    }
 
     return <Container>
 
         <Image src={DragonImage}/>
 
         <NicknameWrapper>
-            <Nickname>Nome do Jogador</Nickname>
+            <Nickname>{state.nickname}</Nickname>
         </NicknameWrapper>
 
         <InfoWrapper>
             <ClassWrapper>
-                <Text>Classe</Text>
+                <select defaultValue={""} value={currentClass ? currentClass : ""} onChange={(e) => {handleClassChange(e.target.value)}}>
+                   <option value=""></option>
+                   {listOptions}
+                </select>
             </ClassWrapper>
 
             <Level>
-                <Text>Nivel</Text>
+                <Text>Nível: {state.level}</Text>
             </Level>
 
-            <UsernameWrapper>
-                <Text>Nome do Jogador</Text>
-            </UsernameWrapper>
+            <TotalExpWrapper>
+                <Text>Cristais Totais: {state.totalCrystals}</Text>
+            </TotalExpWrapper>
 
-            <RaceWrapper>
-                <Text>Raça</Text>
-            </RaceWrapper>
+            <SpecieWrapper>
+                <Text>{state.specie}</Text>
+            </SpecieWrapper>
 
             <ExpToUpWrapper>
-                <Text>Cristais para UP</Text>
+                <Text>Cristais para Up: {state.crystalsToUp}</Text>
             </ExpToUpWrapper>
+
+            <FragmentsWrapper>
+                <Text>Fragmentos: {state.fragments}</Text>
+            </FragmentsWrapper>
         </InfoWrapper>
     </Container>
 }

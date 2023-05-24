@@ -1,13 +1,17 @@
-import React from 'react';
-import './style.css';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import './style.css';
 import AttributeImage from '../../assets/Attribute.png';
 
 const Container = styled.div`
-width: 70%;
+width: 53%;
 margin: 0 auto 0;
 position: relative;
+
+@media (max-width: 1360px) {
+    width: 70%;
+}
 `;
 
 const Image = styled.img`
@@ -37,17 +41,48 @@ border: none;
 -webkit-appearance: none;
 `;
 
+const Modifier = styled.p`
+    color: white;
+    position: absolute;
+    bottom: 15%;
+    left: 43%;
+`;
+
 interface Props {
     title: string;
     value: number;
+    handleChange: (value: number) => void;
 }
 
-function Attribute({title, value}: Props){
+function Attribute({title, value, handleChange}: Props){
 
-    return <Container>
+    const [attributeValue, setAttributeValue] = useState(value);
+    const [modifier, setModifier] = useState(0);
+
+    function handleInputChangeValue(event: ChangeEvent<HTMLInputElement>){
+
+        if(event.target.value === ""){
+            setAttributeValue(0);
+            return;
+        }
+
+        setAttributeValue(parseInt(event.target.value));
+    }
+
+    useEffect(() => {
+
+        let calc = (attributeValue - 10) / 2;
+        setModifier(parseInt(calc.toFixed(0)));
+
+        handleChange(attributeValue);
+        // eslint-disable-next-line
+    }, [attributeValue]);
+
+    return <Container className='attribute-container'>
         <Title>{title}</Title>
-        <Value type="number" defaultValue={value}/>
-        <Image src={AttributeImage} alt="testando" />
+        <Value type="number" value={attributeValue} onChange={(e) => {handleInputChangeValue(e)}} min={0}/>
+        <Image src={AttributeImage}></Image>
+        <Modifier>{modifier >= 0 ? `+${modifier}` : `${modifier}`}</Modifier>
     </Container>
 }
 

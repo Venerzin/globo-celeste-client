@@ -9,11 +9,21 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center; 
+
+  background-color:  #2d2142;
+`;
+
+const BackgroundSolidColor = styled.div`
+  background-color:  #0e071b;
+  height: 100%;
+  width: 50%;
+  margin: 0 0 0 50%;
 `;
 
 function Login() {
 
     return <Container>
+        <BackgroundSolidColor />
         <LoginForm />
     </Container>
 }
