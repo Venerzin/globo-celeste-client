@@ -96,7 +96,7 @@ function Ficha() {
 
   useEffect(() => {
     const fetchUser = async (token: string) => {
-      const res = await fetch(`http://24.199.106.1:3000/players/${id}`, {
+      const res = await fetch(`https://globoceleste.com/players/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function Ficha() {
       
     }
 
-    fetch("http://24.199.106.1:3000/admin/class", {
+    fetch("https://globoceleste.com/admin/class", {
         method: 'GET',
     }).then(async (res) => {
         const data: IClass[] = await res.json();
@@ -166,7 +166,7 @@ function Ficha() {
   useAutosave(() => {
 
     if(token){
-      fetch(`http://24.199.106.1:3000/players/${id}`, {
+      fetch(`https://globoceleste.com/players/${id}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',

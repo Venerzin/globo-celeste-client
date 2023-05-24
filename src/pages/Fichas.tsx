@@ -26,7 +26,7 @@ function Fichas() {
   useEffect(() => {
     const fetchUser = async (token: string) => {
       if(id){
-        const res = await fetch(`http://24.199.106.1:3000/players/list/${id}`, {
+        const res = await fetch(`https://globoceleste.com/players/list/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

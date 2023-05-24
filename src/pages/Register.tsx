@@ -61,7 +61,7 @@ function Register() {
         console.log(JSON.stringify(userData));
 
 
-        const res = await fetch("http://24.199.106.1:3000/users", {
+        const res = await fetch("https://globoceleste.com/users", {
             method: 'POST',
             headers: {"Content-type": "application/json; charset=UTF-8"},
             body: JSON.stringify(userData),

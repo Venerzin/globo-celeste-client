@@ -119,7 +119,7 @@ function LoginForm(){
             password
         }
 
-        fetch("http://24.199.106.1:3000/sessions", {
+        fetch("https://globoceleste.com/sessions", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
