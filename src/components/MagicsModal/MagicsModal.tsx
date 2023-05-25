@@ -141,7 +141,7 @@ function MagicsModal({ width, show, dbMagics, closeModal }: Props){
 
     async function save(): Promise<void>{
         
-        await fetch(`http://localhost:8000/players/magics/${id}`, {
+        await fetch(`${process.env.REACT_APP_BASE_URL}/players/magics/${id}`, {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
@@ -159,7 +159,9 @@ function MagicsModal({ width, show, dbMagics, closeModal }: Props){
 
             <ButttonWrapper>
                 <CloseButton onClick={async () => {
-                    await save();
+                    save()
+                        .then(() => console.log("Magias salvas com sucesso"))
+                        .catch(() => console.log("Algo deu errado ao salvar as magias"));
                     closeModal();
                 }}>Close</CloseButton>
             </ButttonWrapper>

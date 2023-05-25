@@ -119,7 +119,7 @@ function LoginForm(){
             password
         }
 
-        fetch("https://globoceleste.com/sessions", {
+        fetch(`${process.env.REACT_APP_BASE_URL}/sessions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

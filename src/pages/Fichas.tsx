@@ -26,7 +26,7 @@ function Fichas() {
   useEffect(() => {
     const fetchUser = async (token: string) => {
       if(id){
-        const res = await fetch(`https://globoceleste.com/players/list/${id}`, {
+        const res = await fetch(`${process.env.REACT_APP_BASE_URL}/players/list/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
