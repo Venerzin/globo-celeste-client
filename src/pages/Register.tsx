@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import DiscordData from '../components/DiscordData/DiscordData';
 import RegisterForm from '../components/RegisterForm';
 import { IRegister } from '../interfaces/IRegister';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100vw;
@@ -24,6 +25,7 @@ const BackgroundSolidColor = styled.div`
 
 function Register() {
 
+    const navigate = useNavigate();
     const [stage, setStage] = useState(0);
     const [userData, setUserData] = useState<IRegister>({
         name: "",
@@ -68,7 +70,11 @@ function Register() {
         });
 
         const data = await res.json();
-        console.log(data);
+
+        if(data.id){
+            return navigate(`/`);
+        }
+        
     }
 
     switch(stage){
