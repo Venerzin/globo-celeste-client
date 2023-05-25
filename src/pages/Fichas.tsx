@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { IPlayer } from '../interfaces/IPlayer';
 import { useParams } from 'react-router-dom';
 import PlayersTable from '../components/PlayersTable/PlayersTable';
+import CreateFichaModal from '../components/CreateFichaModal';
 
 const Container = styled.div`
   width: 80vw;
@@ -46,7 +47,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const MessageContainer = styled.div`
+const BodyContainer = styled.div`
   width: 100%;
   height: 80%;
 
@@ -69,6 +70,12 @@ function Fichas() {
 
   const [fichas, setFichas] = useState<IPlayer[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+
+  const closeModal = () => {
+
+    setShowModal(false);
+  }
 
   useEffect(() => {
     const fetchUser = async (token: string) => {
@@ -99,14 +106,16 @@ function Fichas() {
       <WrapperFichas>
         <Header>
           <Title>Fichas</Title>
-          <Button>Adicionar</Button>
+          <Button onClick={() => setShowModal(true)}>Adicionar</Button>
         </Header>
-        <MessageContainer>
+        <BodyContainer>
           <Message>
-            Clique no botão "Adicionar" para criar uma ficha
+            Clique no botão "Adicionar" para criar uma ficha!
           </Message>
-        </MessageContainer>
+        </BodyContainer>
       </WrapperFichas>
+
+      <CreateFichaModal show={showModal} closeModal={closeModal}></CreateFichaModal>
     </Container>
   }
 
@@ -114,10 +123,12 @@ function Fichas() {
     <WrapperFichas>
       <Header>
         <Title>Fichas</Title>
-        <Button>Adicionar</Button>
+        <Button onClick={() => setShowModal(true)}>Adicionar</Button>
       </Header>
       <PlayersTable fichas={fichas}/>
     </WrapperFichas>
+
+    <CreateFichaModal show={showModal} closeModal={closeModal}></CreateFichaModal>
   </Container>
 }
 
