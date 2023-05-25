@@ -15,6 +15,53 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
+const WrapperFichas = styled.div`
+  width: 100%;
+  height: 80%;
+  background-color: white;
+  border-radius: 15px;
+`;
+
+const Header = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem 0;
+`;
+
+const Title = styled.h1`
+  font-size: 2.70rem;
+`;
+
+const Button = styled.button`
+  height: 3rem;
+  width: 8rem;
+  background-color: #2d2142;
+  color: white;
+  font-weight: bolder;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+const MessageContainer = styled.div`
+  width: 100%;
+  height: 80%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: inherit;
+`;
+
+const Message = styled.p`
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 5rem;
+`;
+
 function Fichas() {
 
   let { id } = useParams();
@@ -47,8 +94,30 @@ function Fichas() {
     // eslint-disable-next-line
   }, [id]);
 
+  if(fichas.length === 0){
+    return <Container>
+      <WrapperFichas>
+        <Header>
+          <Title>Fichas</Title>
+          <Button>Adicionar</Button>
+        </Header>
+        <MessageContainer>
+          <Message>
+            Clique no botão "Adicionar" para criar uma ficha
+          </Message>
+        </MessageContainer>
+      </WrapperFichas>
+    </Container>
+  }
+
   return <Container>
-    <PlayersTable fichas={fichas}/>
+    <WrapperFichas>
+      <Header>
+        <Title>Fichas</Title>
+        <Button>Adicionar</Button>
+      </Header>
+      <PlayersTable fichas={fichas}/>
+    </WrapperFichas>
   </Container>
 }
 

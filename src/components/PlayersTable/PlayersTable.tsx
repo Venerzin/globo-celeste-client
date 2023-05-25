@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     width: 80%;
-
+    margin: 1rem auto;
 `;
 
 const Table = styled.table`
@@ -13,6 +13,7 @@ const Table = styled.table`
     border: 1px solid black;
     border-collapse: collapse;
     width: 100%;
+    
 `;
 
 const TableHead = styled.thead`
