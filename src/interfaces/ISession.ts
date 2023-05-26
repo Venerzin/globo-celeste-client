@@ -3,5 +3,6 @@ export default interface ISession{
     user: {
         id: string;
         name: string;
+        isAdmin: boolean;
     }
 }

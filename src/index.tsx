@@ -10,7 +10,9 @@ import Fichas from './pages/Fichas';
 
 import reportWebVitals from './reportWebVitals';
 
-import {loader, loader as rootLoader} from "./utils/loader";
+import { loader as rootLoader } from "./utils/loader";
+import Classes from './pages/Classes';
+import { adminLoader } from './utils/adminLoader';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,11 @@ const router = createBrowserRouter([
     path: "/ficha/:id",
     element: <Ficha />,
     loader: rootLoader
+  },
+  {
+    path: "/admin/classes",
+    element: <Classes />,
+    loader: adminLoader
   }
 ]);
 

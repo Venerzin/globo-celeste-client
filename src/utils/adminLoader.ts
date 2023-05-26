@@ -1,12 +1,14 @@
 import { redirect } from "react-router-dom";
 
-const loader = () => {
+const adminLoader = () => {
   const user = sessionStorage.getItem("token");
-  if (!user) {
+  const isAdmin = sessionStorage.getItem("admin");
+
+  if (!user || isAdmin !== 'true') {
     return redirect("/");
   }
 
   return null;
 };
 
-export { loader };
+export { adminLoader };
