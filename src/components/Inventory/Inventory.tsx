@@ -21,7 +21,7 @@ const Container = styled.div`
     column-gap: 30px;
     row-gap: 30px;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
 
         width: 100%;
         height: 80rem;

@@ -14,6 +14,10 @@ const Container = styled.div`
   justify-content: center;
   align-items: center; 
   margin: 0 auto;
+
+  @media (max-width: 500px){
+    width: 90%;
+  }
 `;
 
 const WrapperFichas = styled.div`
@@ -34,6 +38,10 @@ const Header = styled.div`
 
 const Title = styled.h1`
   font-size: 2.70rem;
+
+  @media (max-width: 500px){
+    font-size: 1.5rem;
+  }
 `;
 
 const Button = styled.button`

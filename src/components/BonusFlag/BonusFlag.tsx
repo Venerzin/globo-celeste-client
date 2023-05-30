@@ -25,7 +25,7 @@ const Text = styled.div`
     justify-content: center;
     color: white;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
 
         width: 90%;
     }
@@ -42,7 +42,7 @@ const Image = styled.input`
     left: 30px;
 }
 
-@media (max-width: 375px){
+@media (max-width: 500px){
     left: 0px;
 }
 `;
@@ -66,8 +66,8 @@ const Input = styled.input`
     left: 30px;
 }
 
-@media (max-width: 375px){
-    left: 0px;
+@media (max-width: 500px){
+    left: 18px;
 }
 `;
 

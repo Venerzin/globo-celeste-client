@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { IPlayer } from '../../interfaces/IPlayer';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,10 @@ import { useNavigate } from 'react-router-dom';
 const Container = styled.div`
     width: 80%;
     margin: 1rem auto;
+
+    @media (max-width: 500px){
+        width: 95%;
+  }
 `;
 
 const Table = styled.table`
@@ -69,9 +73,46 @@ interface Props{
 function PlayersTable({fichas}: Props){
 
     const navigate = useNavigate();
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        function handleResize(){
+            setWidth(window.innerWidth);
+          }
+      
+          window.addEventListener('resize', handleResize);
+    }, []);
 
     function handleClickOpenButton(id: string){
         navigate(`/ficha/${id}`);
+    }
+
+    if(width <= 500){
+        return <Container>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableHeadCel>Nome</TableHeadCel>
+                        <TableHeadCel>Nível</TableHeadCel>
+                        <TableHeadCel>Ações</TableHeadCel>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {
+                        fichas.map((player) => {
+                            return <TableRow key={player.id}>
+                                    <TableCel>{player.nickname}</TableCel>
+                                    <TableCel>{player.level}</TableCel>
+                                    <TableCel>
+                                        <OpenButton style={{marginRight: '.5rem'}} onClick={() => {handleClickOpenButton(player.id)}}>Abrir</OpenButton>
+                                        <DeleteButton>Excluir</DeleteButton>
+                                    </TableCel>
+                                </TableRow>
+                        })
+                    }
+                </TableBody>
+            </Table>
+        </Container>
     }
 
     return <Container>

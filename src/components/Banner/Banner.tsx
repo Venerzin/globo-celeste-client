@@ -11,7 +11,7 @@ grid-area: ${(props) => props.defaultValue};
 const Image = styled.img`
     width: 10rem;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         width: 8rem;
     }
 `;
@@ -22,7 +22,7 @@ const Title = styled.h3`
     top: 10%;
     left: ${(props) => props.defaultValue};
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         left: ${(props) => {
             if(props.className === 'second'){
                 return '17%';
@@ -53,7 +53,7 @@ const Input = styled.input`
     top: 15%;
     left: 0;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         width: 8rem;
     }
 `;

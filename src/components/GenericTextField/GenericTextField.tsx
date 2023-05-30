@@ -9,7 +9,7 @@ const Container = styled.div`
     height: 100%;
     box-sizing: border-box;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         height: 14rem; 
     }
 `;

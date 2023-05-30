@@ -19,6 +19,9 @@ const WrapperClasses = styled.div`
     background-color: white;
     border-radius: 15px;
     
+    @media (max-width: 500px){
+        width: 90%;
+    }
 `;
 
 const Header = styled.div`
@@ -32,6 +35,10 @@ const Header = styled.div`
 
 const Title = styled.h1`
   font-size: 2.70rem;
+
+  @media (max-width: 500px){
+        font-size: 1.5rem;
+    }
 `;
 
 const Button = styled.button`
@@ -43,6 +50,10 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+
+  @media (max-width: 500px){
+        width: 6rem;
+    }
 `;
 
 const Table = styled.table`
@@ -51,6 +62,7 @@ const Table = styled.table`
     border-collapse: collapse;
     width: 80%;
     margin: auto;
+    
     
 `;
 
@@ -95,6 +107,7 @@ function Classes(){
     const token = sessionStorage.getItem('token');
     const [classes, setClasses] = useState<IClass[]>([]);
     const [show, setShow] = useState(false);
+    const [width, setWidth] = useState(window.innerWidth);
 
     useEffect(() => {
 
@@ -115,7 +128,14 @@ function Classes(){
             const data : IClass[] = await res.json();
 
             setClasses(data);
-        })
+        });
+
+        function handleResize(){
+            setWidth(window.innerWidth);
+          }
+      
+        window.addEventListener('resize', handleResize);
+
         // eslint-disable-next-line
     },[]);
 
@@ -153,6 +173,45 @@ function Classes(){
     const handleAddClass = (rpgClass: IClass) => {
 
         setClasses([...classes, rpgClass]);
+    }
+
+    if(width <= 500){
+
+        return <Container>
+            <WrapperClasses>
+                <Header>
+                    <Title>Classes</Title>
+
+                    <Button onClick={() => setShow(true)}>Adicionar</Button>
+                </Header>
+
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableHeadCel>Nome</TableHeadCel>
+                            <TableHeadCel>Ações</TableHeadCel>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {
+                            classes.map((rpgClass) => {
+                                return <TableRow key={rpgClass.id}>
+                                        <TableCel>{rpgClass.name}</TableCel>
+                                        <TableCel>
+                                            <DeleteButton onClick={(e) => deleteClass(rpgClass.id)}>Excluir</DeleteButton>
+                                        </TableCel>
+                                    </TableRow>
+                            })
+                        }
+                    </TableBody>
+                </Table>
+
+                <Modal show={show} closeModal={closeModal}>
+                    <CreateClass closeModal={closeModal} addClass={handleAddClass}/>
+                </Modal>
+
+            </WrapperClasses>
+        </Container>
     }
 
     return <Container>

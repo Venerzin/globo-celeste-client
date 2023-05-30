@@ -12,7 +12,7 @@ const Container = styled.div`
     grid-area: playerinfo;
     align-self: center;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         margin: 0 0;
         height: 46rem;
     }
@@ -22,7 +22,7 @@ const BannerSection = styled.div`
     display: flex;
     justify-content: space-around;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         display: grid;
         grid-template-rows: 1fr;
         grid-template-columns: repeat(3, 1fr);
@@ -36,7 +36,7 @@ const LifeSection = styled.div`
     display: flex;
     justify-content: center;
     
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         margin: 2rem 0;
     }
 `;

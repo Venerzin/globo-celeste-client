@@ -24,11 +24,19 @@ const FormWrapper = styled.div`
 
     background-color: white;
     position: relative;
+
+    @media (max-width: 500px){
+        width: 95%;
+    }
 `;
 
 const Title = styled.h2`
     font-size: 3rem;
     margin-bottom: 4rem;
+
+    @media (max-width: 500px){
+        font-size: 1.5rem;
+    }
 `;
 
 const InputWrapper = styled.div`
@@ -118,7 +126,7 @@ function CreateFichaModal({show, closeModal}: Props){
                 </InputWrapper>
                 
                 <InputWrapper>
-                    <Label htmlFor="input-specie">Espécie:</Label>
+                    <Label htmlFor="input-specie">Raça:</Label>
                     <Input type="text" id="input-specie" value={specie} onChange={(e) => setSpecie(e.target.value)} />
                 </InputWrapper>
 

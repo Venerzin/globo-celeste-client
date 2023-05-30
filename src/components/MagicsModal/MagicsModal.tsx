@@ -46,7 +46,7 @@ const ModalBody = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
 
-    @media(max-width: 375px){
+    @media(max-width: 500px){
         width: 100%;
         display: block;
     }

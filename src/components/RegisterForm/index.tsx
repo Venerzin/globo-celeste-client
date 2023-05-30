@@ -14,6 +14,10 @@ const Container = styled.div`
 
     display: flex;
 
+    @media (max-width: 500px){
+        height: auto;
+    }
+
 `;
 
 const EmailContainer = styled.div`
@@ -23,6 +27,10 @@ const EmailContainer = styled.div`
 const Logo = styled.img`
     width: 12rem;
     margin-top: 1.5rem;
+
+    @media (max-width: 500px){
+        width: 50%;
+    }
 `;
 
 const Title = styled.h1`
@@ -31,12 +39,20 @@ const Title = styled.h1`
     text-align: center;
     color: black;
     text-transform: uppercase;
+
+    @media (max-width: 500px){
+        font-size: 1.5rem;
+    }
 `;
 
 const Input = styled.input`
     width: 25rem;
     height: 1.75rem;
     font-size: 1.25rem;
+
+    @media (max-width: 500px){
+        width: 100%;
+    }
 `;
 
 const Label = styled.label`
@@ -49,12 +65,16 @@ const Button = styled.button`
     background-color: #0e071b;
     color: white;
     display: block;
-    margin: 2rem auto 0;
+    margin: 2rem auto 2rem;
     padding: 1rem 6rem;
     font-size: 1.25rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
+    @media (max-width: 500px){
+        padding: 1rem 3rem;
+    }
 `;
 
 const FormContainer = styled.div`
@@ -64,6 +84,10 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 500px){
+        width: 100%;
+    }
 `;
 
 const Form = styled.form`
@@ -86,6 +110,10 @@ const BackgroundSolidColor = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 500px){
+        display: none;
+    }
 `
 
 const Image = styled.img`

@@ -28,6 +28,10 @@ const PasswordContainer = styled.div`
 const Logo = styled.img`
     width: 12rem;
     margin-top: 1.5rem;
+
+    @media (max-width: 500px){
+        width: 50%;
+    }
 `;
 
 const Title = styled.h1`
@@ -36,12 +40,20 @@ const Title = styled.h1`
     text-align: center;
     color: black;
     text-transform: uppercase;
+
+    @media (max-width: 500px){
+        font-size: 1.5rem;
+    }
 `;
 
 const Input = styled.input`
     width: 25rem;
     height: 1.75rem;
     font-size: 1.25rem;
+
+    @media (max-width: 500px){
+        width: 100%;
+    }
 `;
 
 const Label = styled.label`
@@ -69,6 +81,10 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 500px){
+        width: 100%;
+    }
 `;
 
 const Form = styled.form`
@@ -91,6 +107,10 @@ const BackgroundSolidColor = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 500px){
+        display: none;
+    }
 `
 
 const Image = styled.img`
@@ -130,6 +150,7 @@ function LoginForm(){
         .then((data: ISession) => {
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("user_id", data.user.id);
+            sessionStorage.setItem("admin", `${data.user.isAdmin}`);
 
             navigate(`/user/${data.user.id}`);
         })

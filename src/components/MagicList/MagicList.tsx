@@ -9,7 +9,7 @@ const Container = styled.div`
     border: 2px solid #666666;
     margin: 1rem 0 0 0;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         width: 100%;
         border: none;
     }

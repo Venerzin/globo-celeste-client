@@ -19,7 +19,7 @@ import useAutosave from '../hooks/useAutoSave';
 const Container = styled.div`
   margin: 0 4rem 0;
 
-  @media (max-width: 375px){
+  @media (max-width: 500px){
     margin: 0 1rem 0;
   }
 `;
@@ -32,7 +32,7 @@ const BodyWrapper = styled.div`
     grid-template-areas: "sidebar sidebar playerinfo playerinfo playerinfo textfield textfield";
     margin: 2rem auto 2rem;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
 
         width: 100%;
         display: flex;
@@ -74,7 +74,7 @@ const OpenMagicButton = styled.button`
 
     z-index: 100;
 
-    @media(max-width: 375px){
+    @media(max-width: 500px){
         bottom: 20px;
         right: 30px;
     }
@@ -164,6 +164,8 @@ function Ficha() {
   }
 
   useAutosave(() => {
+
+    console.log(user);
 
     if(token){
       fetch(`${process.env.REACT_APP_BASE_URL}/players/${id}`, {

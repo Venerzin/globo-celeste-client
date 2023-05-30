@@ -10,11 +10,20 @@ const FormWrapper = styled.div`
 
     background-color: white;
     position: relative;
+
+    @media (max-width: 500px){
+        width: 90%;
+        height: 80%;
+    }
 `;
 
 const Title = styled.h2`
     font-size: 3rem;
     margin-bottom: 4rem;
+
+    @media (max-width: 500px){
+        font-size: 1.5rem;
+    }
 `;
 
 const InputWrapper = styled.div`
@@ -82,7 +91,7 @@ function CreateClass({ addClass, closeModal }: Props) {
     }
 
     return <FormWrapper onClick={(e) => e.stopPropagation()}>
-        <Title>Nova ficha</Title>
+        <Title>Nova Classe</Title>
 
         <InputWrapper>
             <Label htmlFor="input-nickname">Title:</Label>

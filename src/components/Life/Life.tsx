@@ -8,11 +8,12 @@ const Container = styled.div`
     color: white;
     background-color: #0e071b;
     border: 3px solid #666666;
+    border-radius: 5px;
     margin-bottom: 2rem;
     
 
-    @media (max-width: 375px){
-        width: 100%;
+    @media (max-width: 500px){
+        width: 90%;
     }
 `;
 

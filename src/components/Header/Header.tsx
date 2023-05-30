@@ -16,7 +16,7 @@ const Container = styled.div`
     margin-top: 2rem;
     position: relative;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         height: 10rem;
         flex-direction: column;
         justify-content: center;
@@ -43,7 +43,7 @@ const NicknameWrapper = styled.section`
     justify-content: center;
     align-items: center;
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         height: 30%;
     }
 `;
@@ -57,7 +57,7 @@ const InfoWrapper = styled.section`
     grid-template-areas: "pclass pclass race race fragments fragments"
                          "plevel plevel exp  exp  totalexp  totalexp";
 
-    @media (max-width: 375px){
+    @media (max-width: 500px){
         width: 90%;
 
         grid-template-rows: repeat(3, 1fr);
