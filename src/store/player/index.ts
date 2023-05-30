@@ -64,7 +64,7 @@ const usePlayerStore = create<StoreProps>()((set) => ({
 
         nickname: "",
         specie: "",
-        rpgClassId: "Sem rosto",
+        rpgClassId: "",
         level: 0,
         fragments: 0,
         crystalsToUp: 0,
