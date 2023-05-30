@@ -182,7 +182,7 @@ function Ficha() {
 
   if(!isLoading && user.id !== ""){
 
-    if(width < 500){
+    if(width < 501){
 
       switch (pagination) {
 

@@ -34,6 +34,10 @@ const Image = styled.img`
     @media(max-width: 1360px){
         right: 1%;
     }
+
+    @media(max-width: 500px){
+        right: 12%;
+    }
 `;
 
 interface Attributes{

@@ -12,6 +12,10 @@ position: relative;
 @media (max-width: 1360px) {
     width: 70%;
 }
+
+@media (max-width: 500px) {
+    width: 53%;
+}
 `;
 
 const Image = styled.img`
