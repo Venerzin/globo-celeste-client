@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components"
 
 import DragonImage from "../../assets/DragonDetail.png";
-import { IPlayer } from "../../interfaces/IPlayer";
 import { IClass } from "../../interfaces/IClasses";
 
 import { usePlayerStore } from "../../store/player";
@@ -132,9 +131,20 @@ function Header(props: Props){
 
     const listOptions = props.classes.map((value) => <option value={value.id} key={value.id}>{value.name}</option>);
 
-    const handleClassChange = (id: string) =>{
+    const handleClassChange = (id: string | null) =>{
         actions.updateUser({...state, rpgClassId: id});
     }
+
+    useEffect(() => {
+        if(currentClass === "" || currentClass === null){
+
+            handleClassChange(null);
+            return;
+        }
+
+        handleClassChange(currentClass);
+
+    }, [currentClass]);
 
     return <Container>
 
@@ -146,8 +156,8 @@ function Header(props: Props){
 
         <InfoWrapper>
             <ClassWrapper>
-                <select defaultValue={""} value={currentClass ? currentClass : ""} onChange={(e) => {handleClassChange(e.target.value)}}>
-                   <option value=""></option>
+                <select value={currentClass ? currentClass : ""} onChange={(e) => {setCurrentClass(e.target.value)}}>
+                   <option value={""}></option>
                    {listOptions}
                 </select>
             </ClassWrapper>
