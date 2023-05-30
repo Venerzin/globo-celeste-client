@@ -69,6 +69,10 @@ const Message = styled.p`
   display: block;
   font-size: 1.5rem;
   margin-bottom: 5rem;
+
+  @media (max-width: 500px){
+    padding: 0 3rem 0;
+  }
 `;
 
 function Fichas() {
@@ -131,7 +135,7 @@ function Fichas() {
     <WrapperFichas>
       <Header>
         <Title>Fichas</Title>
-        <Button onClick={() => setShowModal(true)}>Adicionar</Button>
+        
       </Header>
       <PlayersTable fichas={fichas}/>
     </WrapperFichas>
