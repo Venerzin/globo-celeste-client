@@ -5,17 +5,9 @@ import './style.css';
 import AttributeImage from '../../assets/Attribute.png';
 
 const Container = styled.div`
-width: 53%;
+width: 7.25em;
 margin: 0 auto 0;
 position: relative;
-
-@media (max-width: 1360px) {
-    width: 70%;
-}
-
-@media (max-width: 500px) {
-    width: 53%;
-}
 `;
 
 const Image = styled.img`

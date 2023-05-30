@@ -14,6 +14,7 @@ const Container = styled.div`
     padding: 2rem 0 2rem 0;
     height: 49rem;
     grid-area: attributes;
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
@@ -29,14 +30,10 @@ const Container = styled.div`
 const Image = styled.img`
     position: absolute;
     top: ${(props) => props.defaultValue};
-    right: 10%;
-    
-    @media(max-width: 1360px){
-        right: 1%;
-    }
+    right: 13%;
 
     @media(max-width: 500px){
-        right: 12%;
+        right: 7%;
     }
 `;
 
