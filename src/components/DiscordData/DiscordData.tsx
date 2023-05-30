@@ -57,17 +57,19 @@ const Label = styled.label`
 
 const Button = styled.button`
     background-color: #0e071b;
+    width: 30%;
     color: white;
     display: block;
     margin: 2rem auto 2rem;
-    padding: 1rem 6rem;
+    padding: 1rem 0;
     font-size: 1.25rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 
     @media (max-width: 500px){
-        padding: 1rem 3rem;
+        padding: 1rem 0;
+        width: 40%;
     }
 `;
 
@@ -114,6 +116,17 @@ const Image = styled.img`
     width: 80%;
     margin: auto;
 `;
+
+const ButtonWrapper = styled.div`
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+
+    @media (max-width: 500px){
+        width: 80%;
+    }
+`;
+
 interface Props{
     password: string;
     onPasswordChange: (password: string) => void;
@@ -147,7 +160,10 @@ function DiscordData({ password, onPasswordChange, prev, next}: Props){
                 <Input id="passwordConfirm" type="password" value={confirmPassword} onChange={(e) => handleConfirmPassword(e.target.value)}/>
             </PasswordContainer>
 
-            <Button type="button" onClick={next}>Registre-se</Button>
+            <ButtonWrapper>
+                <Button type="button" onClick={prev}>Voltar</Button>
+                <Button type="button" onClick={next}>Registre-se</Button>
+            </ButtonWrapper>
             </Form>
         </FormContainer>
 
