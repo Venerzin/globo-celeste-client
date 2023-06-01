@@ -47,8 +47,16 @@ const OtherSection = styled.div`
 function LifeContent(){
 
     const { state, actions } = usePlayerStore((store) => store);
-    const [bannerStats, setBannerStats] = useState({ca: 0, initiative: 0, displacement: 0});
-    const [others, setOthers] = useState({proficiencyBonus: 0, inspiration: 0, passivePerception: 0});
+    const [bannerStats, setBannerStats] = useState({
+        ca: state.ca, 
+        initiative: state.initiative, 
+        displacement: state.displacement
+    });
+    const [others, setOthers] = useState({
+        proficiencyBonus: state.proficiencyBonus, 
+        inspiration: state.inspiration, 
+        passivePerception: state.passivePerception,
+    });
 
     const handleCAChange = (element: HTMLInputElement) => {
         setBannerStats({...bannerStats, ca: parseInt(element.value)});
@@ -76,16 +84,21 @@ function LifeContent(){
 
     useEffect(() => {
         
-        actions.updateUser({...state, ...bannerStats});
-        actions.updateUser({...state, ...others});
+        actions.updateUser({
+            ...state,
+            ca: bannerStats.ca || 0,
+            initiative: bannerStats.initiative || 0,
+            displacement: bannerStats.displacement || 0,
+            ...others,
+        });
         // eslint-disable-next-line
     }, [bannerStats, others]);
 
     return <Container>
         <BannerSection>
-            <Banner title="CA" posLeft="40%" gridArea={"primeiro"} value={state.ca} handleChange={handleCAChange}/>
-            <Banner title="Iniciativa" posLeft="24%" gridArea={"segundo"} className="second" value={state.initiative} handleChange={handleInitiativeChange}/>
-            <Banner title="Desloc" posLeft="30%" gridArea={"terceiro"} className="third" value={state.displacement} handleChange={handleDisplacementChange}/>
+            <Banner title="CA" posLeft="40%" gridArea={"primeiro"} value={bannerStats.ca} handleChange={handleCAChange}/>
+            <Banner title="Iniciativa" posLeft="24%" gridArea={"segundo"} className="second" value={bannerStats.initiative} handleChange={handleInitiativeChange}/>
+            <Banner title="Desloc" posLeft="30%" gridArea={"terceiro"} className="third" value={bannerStats.displacement} handleChange={handleDisplacementChange}/>
         </BannerSection>
 
         <LifeSection>

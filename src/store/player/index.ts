@@ -1,8 +1,7 @@
 import { create } from "zustand";
 import { IMagics } from "../../interfaces/IMagics";
-import { IPlayer } from "../../interfaces/IPlayer";
 
-interface PlayerProps{
+export interface PlayerProps{
     id: string
     nickname: string
     specie: string
@@ -50,7 +49,7 @@ interface PlayerProps{
 }
 
 interface ActionsProps{
-    updateUser: (user: IPlayer) => void;
+    updateUser: (user: PlayerProps) => void;
 }
 
 interface StoreProps{

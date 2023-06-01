@@ -149,7 +149,12 @@ const WrapperSalvaGuardaContraMorte = styled.div`
 function Life(){
 
     const { state, actions } = usePlayerStore((store) => store);
-    const [life, setLife] = useState({maxLife: 0, currentLife: 0, temporaryLife: 0, lifeDices: "1d8"});
+    const [life, setLife] = useState({
+        maxLife: state.maxLife, 
+        currentLife: state.currentLife, 
+        temporaryLife: state.temporaryLife, 
+        lifeDices: state.lifeDices,
+    });
 
     const handleMaxLifeChange = (element: HTMLInputElement) => {
         setLife({...life, maxLife: parseInt(element.value)});

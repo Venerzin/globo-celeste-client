@@ -9,11 +9,10 @@ import LifeContent from '../components/LifeContent/LifeContent';
 import Characteristics from '../components/Characteristics/Characteristics';
 
 import './style.css';
-import { IPlayer } from '../interfaces/IPlayer';
 import MagicsModal from '../components/MagicsModal/MagicsModal';
 import { IClass } from '../interfaces/IClasses';
 
-import { usePlayerStore } from '../store/player';
+import { PlayerProps, usePlayerStore } from '../store/player';
 import useAutosave from '../hooks/useAutoSave';
 
 const Container = styled.div`
@@ -104,7 +103,7 @@ function Ficha() {
         },
       })
 
-      const data : IPlayer = await res.json();
+      const data : PlayerProps = await res.json();
       
       userActions.updateUser(data);
       

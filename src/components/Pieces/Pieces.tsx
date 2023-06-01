@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import MoneyMold from "../../assets/MoneyMolde.png";
@@ -34,10 +34,10 @@ const Subtitle = styled.p`
 interface Props{
     children: string;
     pieces: number;
-    onBlur(num: number): void;
+    onChange(num: number): void;
 }
 
-function Pieces({children, pieces, onBlur}: Props){
+function Pieces({children, pieces, onChange}: Props){
 
     const [value, setValue] = useState(pieces);
 
@@ -46,9 +46,21 @@ function Pieces({children, pieces, onBlur}: Props){
         setValue(parseInt(event.target.value));
     }
 
+    const handleInputBlur = (e: HTMLInputElement) => {
+        if(isNaN(parseInt(e.value)) || parseInt(e.value) < 0){
+            setValue(0);
+        }
+    }
+
+    useEffect(() => {
+        onChange(value);
+
+         // eslint-disable-next-line
+    }, [value])
+
     return <Wrapper>
         <Image src={MoneyMold}/>
-        <Input type="number" defaultValue={value} onChange={(event) => {handleChange(event)}} onBlur={() => onBlur(value)}></Input>
+        <Input type="number" value={value} onChange={(event) => handleChange(event)} onBlur={(e) => handleInputBlur(e.target)}></Input>
         <Subtitle>{children}</Subtitle>
     </Wrapper>
 }

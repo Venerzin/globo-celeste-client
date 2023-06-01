@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Pieces from '../Pieces/Pieces';
 import { IEquipaments } from '../../interfaces/IEquipaments';
+import { usePlayerStore } from '../../store/player';
 
 const Container = styled.div`
     background-color: #0e071b;
@@ -57,73 +58,84 @@ interface Props {
     onChange(equipaments: IEquipaments): void;
 }
 
-function Equipment({text, pc, pp, pe, po, pl, children, onChange, mr="0%"}: Props){
+function Equipment({children, mr="0%"}: Props){
 
+    const { state, actions } = usePlayerStore((store) => store);
     const [equipaments, setEquipaments] = useState<IEquipaments>({
-        text,
-        pc,
-        pp,
-        pe,
-        po,
-        pl
+        text: state.equipament,
+        pc: state.pc,
+        pp: state.pp,
+        pe: state.pe,
+        po: state.po,
+        pl: state.pl,
     });
+
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-    function handleEquipamentsOnBlur(){
+    function handleEquipamentsChange(){
 
         if(textAreaRef.current){
             setEquipaments({ ...equipaments, text: textAreaRef.current.value});
         }
     }
 
-    function handlePiecesOfCooperOnBlur(num: number){
+    function handlePiecesOfCooperChange(num: number){
 
         setEquipaments({ ...equipaments, pc: num});
     }
 
-    function handlePiecesOfSilverOnBlur(num: number){
+    function handlePiecesOfSilverChange(num: number){
 
         setEquipaments({ ...equipaments, pp: num});
     }
 
-    function handlePiecesOfElectroOnBlur(num: number){
+    function handlePiecesOfElectroChange(num: number){
 
         setEquipaments({ ...equipaments, pe: num});
     }
 
-    function handlePiecesOfGoldOnBlur(num: number){
+    function handlePiecesOfGoldChange(num: number){
 
         setEquipaments({ ...equipaments, po: num});
     }
 
-    function handlePiecesOfPlatinumOnBlur(num: number){
+    function handlePiecesOfPlatinumChange(num: number){
 
         setEquipaments({ ...equipaments, pl: num});
     }
 
     useEffect(() => {
-        onChange(equipaments);
+
+        actions.updateUser({...state, ...{
+            equipament: equipaments.text,
+            pc: equipaments.pc || 0,
+            pp: equipaments.pp || 0,
+            pe: equipaments.pp || 0,
+            po: equipaments.pp || 0,
+            pl: equipaments.pl || 0,
+        }});
+
         // eslint-disable-next-line
     }, [equipaments]);
 
     return <Container style={{ marginBottom: mr}}>
         <Title>{children}</Title>
-        <TextArea defaultValue={equipaments.text} ref={textAreaRef} onBlur={handleEquipamentsOnBlur}>
+        <TextArea defaultValue={equipaments.text} ref={textAreaRef} onBlur={handleEquipamentsChange}>
         </TextArea>
         <GoldWrapper>
-                <Pieces pieces={pc} onBlur={handlePiecesOfCooperOnBlur}>
+                <Pieces pieces={equipaments.pc} onChange={handlePiecesOfCooperChange}>
                     Pc
                 </Pieces>
-                <Pieces pieces={pp} onBlur={handlePiecesOfSilverOnBlur}>
+                <Pieces pieces={equipaments.pp} onChange={handlePiecesOfSilverChange}>
                     Pp
                 </Pieces>
-                <Pieces pieces={pe} onBlur={handlePiecesOfElectroOnBlur}>
+                <Pieces pieces={equipaments.pe} onChange={handlePiecesOfElectroChange}>
                     Pe
                 </Pieces>
-                <Pieces pieces={po} onBlur={handlePiecesOfGoldOnBlur}>
+                <Pieces pieces={equipaments.po} onChange={handlePiecesOfGoldChange}>
                     Po
                 </Pieces>
-                <Pieces pieces={pl} onBlur={handlePiecesOfPlatinumOnBlur}>
+                <Pieces pieces={equipaments.pl} onChange={handlePiecesOfPlatinumChange}>
                     Pl
                 </Pieces>
         </GoldWrapper>

@@ -82,17 +82,24 @@ interface Props{
 
 function BonusFlag({value, onChange, children, marginTop = true}: Props){
 
+    const handleInputBlur = (e: HTMLInputElement) => {
+        if(isNaN(parseInt(e.value))){
+            e.value = "0";
+            onChange(0);
+        }
+    }
+
     if(!marginTop){
         return <NoMarginTopContainer>
             <Image type="image" src={FlagDetail} className="bonus-flag-img"/>
-            <Input type="number" value={value} onChange={(e) => onChange(parseInt(e.target.value))}/>
+            <Input type="number" value={value} onChange={(e) => onChange(parseInt(e.target.value))} onBlur={(e) => handleInputBlur(e.target)}/>
             <Text><p>{children}</p></Text>
         </NoMarginTopContainer>
     }
 
     return <Container>
         <Image type="image" src={FlagDetail} className="bonus-flag-img"/>
-        <Input type="number" value={value} onChange={(e) => onChange(parseInt(e.target.value))}/>
+        <Input type="number" value={value} onChange={(e) => onChange(parseInt(e.target.value))} onBlur={(e) => handleInputBlur(e.target)}/>
         <Text><p>{children}</p></Text>
     </Container>
 }

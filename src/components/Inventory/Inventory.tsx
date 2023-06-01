@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Equipment from '../Equipment/Equipment';
 import GenericTextField from '../GenericTextField/GenericTextField';
-import { IPlayer } from '../../interfaces/IPlayer';
-import { IEquipaments } from '../../interfaces/IEquipaments';
-import { useParams } from 'react-router-dom';
 import { usePlayerStore } from '../../store/player';
 
 const Container = styled.div`
@@ -63,7 +60,6 @@ const IdiomasOutrosWrapper = styled.div`
 
 function Inventory(){
 
-    const { id } = useParams();
     const { state, actions } = usePlayerStore((store) => store);
     
     const [inventory, setInventory] = useState({
@@ -71,18 +67,10 @@ function Inventory(){
         attacks: state.attacks,
         featuresAndTraits: state.featureAndTraits,
         others: state.other,
-        equipaments: {
-            text: state.equipament,
-            pc: state.pc,
-            pp: state.pp,
-            pe: state.pp,
-            po: state.pp,
-            pl: state.pl,
-        }
     });
 
     function handleDeathSavesChange(deathSaves: string){
-        setInventory({ ...inventory, deathSaves})
+        setInventory({ ...inventory, deathSaves: deathSaves})
     }
 
     function handleAttacksChange(attacks: string){
@@ -97,10 +85,6 @@ function Inventory(){
         setInventory({ ...inventory, others})
     }
 
-    function handleEquipamentsChange(equipaments: IEquipaments){
-        setInventory({...inventory, equipaments})
-    }
-
 
     useEffect(() => {
         actions.updateUser({...state, ...{
@@ -108,12 +92,6 @@ function Inventory(){
             attacks: inventory.attacks,
             featureAndTraits: inventory.featuresAndTraits,
             other: inventory.others,
-            equipament: inventory.equipaments.text,
-            pc: inventory.equipaments.pc,
-            pp: inventory.equipaments.pp,
-            pe: inventory.equipaments.pp,
-            po: inventory.equipaments.pp,
-            pl: inventory.equipaments.pl,
         }});
 
         // eslint-disable-next-line
@@ -137,7 +115,7 @@ function Inventory(){
             </GenericTextField>
         </CaracteristicasWrapper>
         <EquipamentosWrapper>
-            <Equipment pc={state.pc} pp={state.pp} pe={state.pe} po={state.po} pl={state.pl} text={state.equipament} onChange={handleEquipamentsChange}>
+            <Equipment>
                 Equipamentos
             </Equipment>
         </EquipamentosWrapper>

@@ -35,6 +35,7 @@ color: white;
 border: none;
 
 -webkit-appearance: none;
+appearance: none;
 `;
 
 const Modifier = styled.p`
@@ -56,19 +57,20 @@ function Attribute({title, value, handleChange}: Props){
     const [modifier, setModifier] = useState(0);
 
     function handleInputChangeValue(event: ChangeEvent<HTMLInputElement>){
-
-        if(event.target.value === ""){
-            setAttributeValue(0);
-            return;
-        }
-
         setAttributeValue(parseInt(event.target.value));
+    }
+
+    const handleInputBlur = (e: HTMLInputElement) => {
+        if(isNaN(parseInt(e.value)) || parseInt(e.value) < 0){
+            e.value = '0';
+            setAttributeValue(0);
+        }
     }
 
     useEffect(() => {
 
         let calc = (attributeValue - 10) / 2;
-        setModifier(parseInt(calc.toFixed(0)));
+        setModifier(parseInt(calc.toFixed(0)) || -5);
 
         handleChange(attributeValue);
         // eslint-disable-next-line
@@ -76,7 +78,7 @@ function Attribute({title, value, handleChange}: Props){
 
     return <Container className='attribute-container'>
         <Title>{title}</Title>
-        <Value type="number" value={attributeValue} onChange={(e) => {handleInputChangeValue(e)}} min={0}/>
+        <Value type="number" value={attributeValue} onChange={(e) => {handleInputChangeValue(e)}} onBlur={(e) => handleInputBlur(e.target)}/>
         <Image src={AttributeImage}></Image>
         <Modifier>{modifier >= 0 ? `+${modifier}` : `${modifier}`}</Modifier>
     </Container>

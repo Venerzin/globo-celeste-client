@@ -70,18 +70,26 @@ interface Props {
 
 function Banner({title, value, posLeft, gridArea, className, handleChange}: Props){
 
+    const handleEmptyValue = (e: HTMLInputElement) => {
+        if(isNaN(parseInt(e.value))){
+            e.value = '0';
+            handleChange(e);
+        }
+    }
+
+
     if(className !== undefined){
         return <Container defaultValue={gridArea}>
             <Title defaultValue={posLeft} className={className}>{title}</Title>
             <Image src={BannerImage}></Image>
-            <Input type="number" defaultValue={0} value={value} onChange={(e) => {handleChange(e.target)}}></Input>
+            <Input type="number" value={value} onChange={(e) => {handleChange(e.target)}} onBlur={(e) => handleEmptyValue(e.target)}></Input>
         </Container>
     }
 
     return <Container defaultValue={gridArea}>
         <Title defaultValue={posLeft}>{title}</Title>
         <Image src={BannerImage}></Image>
-        <Input type="number" defaultValue={0} value={value} onChange={(e) => {handleChange(e.target)}}></Input>
+        <Input type="number"  value={value} onChange={(e) => {handleChange(e.target)}} onBlur={(e) => handleEmptyValue(e.target)}></Input>
     </Container>
 }
 

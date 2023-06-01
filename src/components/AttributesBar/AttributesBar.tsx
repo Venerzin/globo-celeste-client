@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Attribute from "../Attribute/Attribute";
 
-import AttributeDetail from "../../assets/AttributeDetail.png";
 import "./style.css";
-import { IPlayer } from "../../interfaces/IPlayer";
-import { useParams } from "react-router-dom";
+import AttributeDetail from "../../assets/AttributeDetail.png";
+
 import { usePlayerStore } from "../../store/player";
 
 const Container = styled.div`
@@ -59,30 +58,28 @@ function AttributesBar(){
         charisma: state.charisma
     });
 
-    const { id } = useParams();
-
     function handleStrenthChange(strength: number){
-        setAttributes({...attributes, strength})
+        setAttributes({...attributes, strength: strength || 0})
     }
 
     function handleDexterityChange(dexterity: number){
-        setAttributes({...attributes, dexterity})
+        setAttributes({...attributes, dexterity: dexterity || 0})
     }
 
     function handleConstitutionChange(constitution: number){
-        setAttributes({...attributes, constitution})
+        setAttributes({...attributes, constitution: constitution || 0})
     }
 
     function handleInteligenceChange(inteligence: number){
-        setAttributes({...attributes, inteligence})
+        setAttributes({...attributes, inteligence: inteligence || 0})
     }
 
     function handleWisdomChange(wisdom: number){
-        setAttributes({...attributes, wisdom})
+        setAttributes({...attributes, wisdom: wisdom || 0})
     }
 
     function handleCharismaChange(charisma: number){
-        setAttributes({...attributes, charisma})
+        setAttributes({...attributes, charisma: charisma || 0})
     }
 
     useEffect(() => {
