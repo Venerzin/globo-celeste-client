@@ -11,17 +11,20 @@ const Container = styled.div`
     box-sizing: border-box;
 
     position: relative;
+    border-radius: 15px;
 `;
 
 const Title = styled.h3`
-color: white;
-text-align: center;
-height: 20%;
-display: flex;
-flex-direction: column;
-justify-content: center;
+    color: white;
+    text-align: center;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-border: 3px solid #666666;
+    border: 3px solid #666666;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 `;
 
 const TextArea = styled.textarea`
@@ -34,6 +37,8 @@ const TextArea = styled.textarea`
 
     padding-top: 5rem;
     padding-left: .5rem;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 `;
 
 const GoldWrapper = styled.div`
@@ -49,13 +54,6 @@ const GoldWrapper = styled.div`
 interface Props {
     children: string;
     mr?: string;
-    pc: number;
-    pp: number;
-    pe: number;
-    po: number;
-    pl: number;
-    text: string;
-    onChange(equipaments: IEquipaments): void;
 }
 
 function Equipment({children, mr="0%"}: Props){

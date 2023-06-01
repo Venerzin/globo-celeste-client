@@ -8,6 +8,7 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+    border-radius: 15px;
 
     @media (max-width: 500px){
         height: 14rem; 
@@ -23,6 +24,8 @@ const Title = styled.h3`
     justify-content: center;
 
     border: 3px solid #666666;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 `;
 
 const TextArea = styled.textarea`
@@ -30,9 +33,12 @@ const TextArea = styled.textarea`
     width: 100%;
     height: 80%;
     resize: none;
-    border: 2px solid #666666;
     color: white;
     padding: .5rem 0 0 .5rem;
+
+    border: 2px solid #666666;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 `;
 
 interface Props {
