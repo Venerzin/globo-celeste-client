@@ -6,18 +6,22 @@ import CreateClass from "../components/CreateClass";
 
 const Container = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 
     display: flex;
     justify-content: center;
-    align-items: center;
 `;
 
 const WrapperClasses = styled.div`
     width: 80%;
-    height: 80%;
+    min-height: 90vh;
     background-color: white;
     border-radius: 15px;
+
+    padding: 2rem 2rem 4rem 2rem;
+
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     
     @media (max-width: 500px){
         width: 90%;
@@ -26,11 +30,12 @@ const WrapperClasses = styled.div`
 
 const Header = styled.div`
   width: 100%;
-  height: 20%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem 0;
+
+  margin-bottom: 4rem;
 `;
 
 const Title = styled.h1`
@@ -62,8 +67,6 @@ const Table = styled.table`
     border-collapse: collapse;
     width: 80%;
     margin: auto;
-    overflow: auto;
-    
 `;
 
 const TableHead = styled.thead`
@@ -73,7 +76,9 @@ const TableHeadCel = styled.th`
     border: 1px solid black;
 `;
 
-const TableBody = styled.tbody``;
+const TableBody = styled.tbody`
+
+`;
 
 const TableRow = styled.tr`
 `;
