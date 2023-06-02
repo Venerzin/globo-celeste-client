@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Skill from "./Skill/Skill";
-import { useParams } from "react-router-dom";
 import { usePlayerStore } from "../store/player";
 
 const Container = styled.div`
@@ -9,10 +8,12 @@ const Container = styled.div`
     margin: 0 0 0 .25rem;
     height: 49rem;
     grid-area: skills;
+    background-color: #0e071b;
+
+    overflow: auto;
 `;
 
 const SkillsWrapper = styled.div`
-    background-color: #0e071b;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -31,7 +32,6 @@ const pericias = ['Acrobacia', 'Adestrar Animais', 'Arcanismo', 'Atletismo', 'En
 
 function SkillsBar(){
 
-    const { id } = useParams();
     const { state, actions } = usePlayerStore((store) => store);
     const [activedSkills, setActivedSkills] = useState<string[]>(state.skills.split("-"));
 
