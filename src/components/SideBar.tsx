@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import AttributesBar from "./AttributesBar/AttributesBar";
 import SkillsBar from "./SkillsBar";
-import { IPlayer } from "../interfaces/IPlayer";
 
 const Container = styled.div`
     

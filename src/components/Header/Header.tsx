@@ -144,6 +144,7 @@ function Header(props: Props){
 
         handleClassChange(currentClass);
 
+        // eslint-disable-next-line
     }, [currentClass]);
 
     return <Container>

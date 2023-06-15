@@ -1,10 +1,5 @@
  // @ts-nocheck 
 import React from 'react';
-import { IPlayer } from '../interfaces/IPlayer';
-
-interface ISave{
-    (data: IPlayer): void;
-}
 
 function useAutosave(callback, delay = 1000, deps = []) {
     const savedCallback = React.useRef(); // to save the current "fresh" callback
@@ -26,6 +21,7 @@ function useAutosave(callback, delay = 1000, deps = []) {
             // clean up on unmount or dependency change
             return () => clearInterval(interval);
         }
+        // eslint-disable-next-line
     }, [delay, ...deps]);
 };
 

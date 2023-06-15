@@ -81,6 +81,7 @@ function Fichas() {
   let token = sessionStorage.getItem('token');
 
   const [fichas, setFichas] = useState<IPlayer[]>([]);
+  // eslint-disable-next-line
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import GenericTextField from "../GenericTextField/GenericTextField";
-import { useParams } from "react-router-dom";
 
 import { usePlayerStore } from "../../store/player";
 
@@ -21,7 +20,6 @@ interface ICharacteristics{
 
 function Characteristics(){
 
-    const { id } = useParams();
     const { state, actions } = usePlayerStore((store) => store);
     
     const [characteristics, setCharacteristics] = useState<ICharacteristics>({
