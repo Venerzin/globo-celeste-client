@@ -13,6 +13,7 @@ import reportWebVitals from './reportWebVitals';
 import { loader as rootLoader } from "./utils/loader";
 import Classes from './pages/Classes';
 import { adminLoader } from './utils/adminLoader';
+import { Page } from './templates/autheticated/page';
 
 const router = createBrowserRouter([
   {
@@ -25,17 +26,23 @@ const router = createBrowserRouter([
   },
   {
     path: "/user/:id",
-    element: <Fichas />,
+    element: <Page>
+      <Fichas />
+    </Page>,
     loader: rootLoader,
   },
   {
     path: "/ficha/:id",
-    element: <Ficha />,
+    element: <Page>
+      <Ficha />
+    </Page>,
     loader: rootLoader
   },
   {
     path: "/admin/classes",
-    element: <Classes />,
+    element: <Page>
+      <Classes />
+    </Page>,
     loader: adminLoader
   }
 ]);
@@ -45,6 +52,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+
     <RouterProvider router={router}/>
   </React.StrictMode>
 );

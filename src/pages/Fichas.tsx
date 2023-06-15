@@ -8,7 +8,7 @@ import CreateFichaModal from '../components/CreateFichaModal';
 
 const Container = styled.div`
   width: 80vw;
-  height: 100vh;
+  height: calc(100vh - 6rem);
   display: flex;
   flex-direction: column;
   justify-content: center;

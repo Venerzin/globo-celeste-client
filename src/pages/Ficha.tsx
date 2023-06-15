@@ -16,7 +16,7 @@ import { PlayerProps, usePlayerStore } from '../store/player';
 import useAutosave from '../hooks/useAutoSave';
 
 const Container = styled.div`
-  margin: 0 4rem 0;
+  margin: 4rem 4rem 0;
 
   @media (max-width: 500px){
     margin: 0 1rem 0;
